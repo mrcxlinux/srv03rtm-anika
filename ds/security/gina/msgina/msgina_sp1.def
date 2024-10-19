@@ -1,0 +1,56 @@
+LIBRARY         MSGINA
+
+EXPORTS
+        WlxNegotiate
+        WlxInitialize
+        WlxDisplaySASNotice
+        WlxLoggedOutSAS
+        WlxActivateUserShell
+        WlxLoggedOnSAS
+        WlxDisplayLockedNotice
+        WlxWkstaLockedSAS
+        WlxIsLockOk
+        WlxIsLogoffOk
+        WlxLogoff
+        WlxShutdown
+        WlxStartApplication
+        WlxScreenSaverNotify
+        WlxNetworkProviderLoad
+        WlxDisplayStatusMessage
+        WlxGetStatusMessage
+        WlxRemoveStatusMessage
+        WlxGetConsoleSwitchCredentials
+        WlxReconnectNotify
+        WlxDisconnectNotify
+
+        ShellShutdownDialog
+
+        ShellGetUserList                         @1         NONAME
+        ShellStatusHostEnd                       @2         NONAME
+        ShellIsFriendlyUIActive                  @3         NONAME
+        ShellIsSuspendAllowed                    @4         NONAME
+        ShellIsRemoteConnectionsEnabled          @5         NONAME
+        ShellEnableFriendlyUI                    @6         NONAME
+        ShellEnableMultipleUsers                 @7         NONAME
+        ShellEnableRemoteConnections             @8         NONAME
+        ShellTurnOffDialog                       @9         NONAME
+        ShellIsMultipleUsersEnabled             @10         NONAME
+        ShellACPIPowerButtonPressed             @11         NONAME
+        ShellIsSingleUserNoPassword             @12         NONAME
+        ShellStatusHostShuttingDown             @13         NONAME
+        ShellNotifyThemeUserChange              @14         NONAME
+        ShellSwitchWhenInteractiveReady         @15         NONAME
+        ShellDimScreen                          @16         NONAME
+        ShellInstallAccountFilterData           @17         NONAME
+        ShellStatusHostBegin                    @18         NONAME
+        ShellIsUserInteractiveLogonAllowed      @19         NONAME
+        ShellSwitchUser                         @20         NONAME
+        ShellReturnToWelcome                    @21         NONAME
+        ShellStatusHostPowerEvent               @22         NONAME
+        ShellStartCredentialServer              @23         NONAME
+        ShellAcquireLogonMutex                  @24         NONAME
+        ShellReleaseLogonMutex                  @25         NONAME
+        ShellSignalShutdown                     @26         NONAME
+        ShellStatusHostHide                     @27         NONAME
+        ShellStatusHostShow                     @28         NONAME
+

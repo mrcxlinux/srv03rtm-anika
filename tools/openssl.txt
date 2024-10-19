@@ -1,0 +1,41 @@
+mkdir testroot
+mkdir testroot/testroot.db.certs
+touch testroot/testroot.db.index
+echo "4831793303313605" > testroot/testroot.db.serial
+
+openssl req -x509 -md5 -newkey rsa:1536 -nodes -keyout testroot/testroot.key -out testroot/testroot.pem -days 7120 -config testroot.conf
+
+openssl x509 -outform der -in testroot/testroot.pem -out testroot.cer
+
+---
+
+mkdir testpca
+mkdir testpca/testpca.db.certs
+touch testpca/testpca.db.index
+echo "3921298631018096" > testpca/testpca.db.serial
+
+openssl req -new -newkey rsa:1536 -nodes -keyout testpca/testpca.key -out testpca/testpca.csr -config testpca.conf
+openssl ca -config testroot.conf -out testpca/testpca.pem -infiles testpca/testpca.csr
+
+openssl x509 -outform der -in testpca/testpca.pem -out testpca.cer
+
+---
+
+mkdir vbl03ca
+mkdir vbl03ca/vbl03ca.db.certs
+touch vbl03ca/vbl03ca.db.index
+echo "2208785574689461" > vbl03ca/vbl03ca.db.serial
+
+openssl req -new -newkey rsa:2048 -nodes -keyout vbl03ca/vbl03ca.key -out vbl03ca/vbl03ca.csr -config vbl03ca.conf
+openssl ca -config testpca.conf -out vbl03ca/vbl03ca.pem -infiles vbl03ca/vbl03ca.csr
+
+openssl x509 -outform der -in vbl03ca/vbl03ca.pem -out vbl03ca.cer
+
+---
+
+mkdir driver
+
+openssl req -new -newkey rsa:1024 -nodes -keyout driver/driver.key -out driver/driver.csr -config driver.conf
+openssl ca -config vbl03ca.conf -out driver/driver.pem -infiles driver/driver.csr
+
+openssl pkcs12 -export -in driver/driver.pem -inkey driver/driver.key -out driver.pfx -certfile testroot/testroot.pem -certfile vbl03ca/vbl03ca.pem -nodes
